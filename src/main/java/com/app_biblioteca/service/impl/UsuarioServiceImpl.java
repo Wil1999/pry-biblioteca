@@ -23,7 +23,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 	
 	@Override
 	public List<Usuario> list_all() {
-		return usuarioR.findAll();
+		List<Usuario> usuarios = usuarioR.findAll();
+		if(usuarios.isEmpty())throw new EntityNotFoundException(EntityNotFoundExceptionMessages.USUARIO_NOT_FOUND);
+		return usuarios;
 	}
 
 	@Override
@@ -45,13 +47,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 		if(!usuarioR.findByEmail(user.getEmail()).isEmpty()) {
 			throw new EntityNotFoundException("El investigador no existe");
 		}
-		user.setId(id);
+		user.setIdUsuario(id);
 		return usuarioR.save(user);
 	}
 
 	@Override
 	@Transactional
-	public void delete(Long id){
+	public void delete(Long id) throws EntityNotFoundException, IllegalOperationException{
 		Usuario user = usuarioR.findById(id).orElseThrow(
 				() -> new EntityNotFoundException(EntityNotFoundExceptionMessages.USUARIO_NOT_FOUND)
 				);

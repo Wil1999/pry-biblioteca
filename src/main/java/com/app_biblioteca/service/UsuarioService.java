@@ -13,5 +13,4 @@ public interface UsuarioService {
 	Usuario update(Usuario user, Long id) throws EntityNotFoundException, IllegalOperationException;
 	void delete(Long id) throws EntityNotFoundException, IllegalOperationException;
 	
-	
 }

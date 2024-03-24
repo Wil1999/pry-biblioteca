@@ -2,6 +2,9 @@ package com.app_biblioteca.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,16 +17,19 @@ import lombok.Data;
 
 @Entity
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property="idPrestamo")
 public class Prestamo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
+	public Long idPrestamo;
 	
 	@ManyToOne()
+	@JsonBackReference
 	public Usuario usuario;
 	
 	@ManyToOne()
+	@JsonBackReference
 	public Libro libro;
 	
 	@Temporal(TemporalType.DATE)

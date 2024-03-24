@@ -8,6 +8,9 @@ public class EntityNotFoundExceptionMessages {
 	public static final String PRESTAMO_NOT_FOUND = "El PRESTAMO con el ID proporcionado no fue encontrado";
 	public static final String USUARIO_NOT_FOUND = "El USUARIO con el ID proporcionado no fue encontrado";
 	
+	public static final String AUTORES_NOT_FOUND = "No hay registro de AUTORES";
+	
+	
 	// Constructor privado
 		private EntityNotFoundExceptionMessages() {
 			throw new IllegalStateException ("Utility class");
